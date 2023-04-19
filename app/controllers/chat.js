@@ -9,5 +9,14 @@ module.exports.iniciaChat=(application, req, res)=>{
         return res.render('index',{validacao: erros})
     }
 
-    res.render('chat')
+    application.locals.io.emit('msgParaCliente',
+    {
+        nome:dadosForm.nome,
+        mensagem:'acabou de entrar'
+    })
+
+    
+
+    res.render('chat',{dados:dadosForm})
+    
 }
